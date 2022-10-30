@@ -1,5 +1,6 @@
+import { Workflow } from "./src/workflow.ts";
 import { Manifest } from "deno-slack-sdk/mod.ts";
-import GreetingWorkflow from "./workflows/greeting_workflow.ts";
+import { Datastore } from "./src/datastore.ts";
 
 /**
  * The app manifest contains the app's configuration. This
@@ -7,11 +8,17 @@ import GreetingWorkflow from "./workflows/greeting_workflow.ts";
  * https://api.slack.com/future/manifest
  */
 export default Manifest({
-  name: "new-slackbot",
-  description:
-    "A sample that demonstrates using a function, workflow and trigger to send a greeting",
-  icon: "assets/icon.png",
-  workflows: [GreetingWorkflow],
+  name: "thankyou-slackbot",
+  description: "count and tally thanks",
+  icon: "assets/thnx.png",
+  workflows: [Workflow],
   outgoingDomains: [],
-  botScopes: ["commands", "chat:write", "chat:write.public"],
+  datastores: [Datastore],
+  botScopes: [
+    "app_mentions:read",
+    "chat:write",
+    "chat:write.public",
+    "datastore:read",
+    "datastore:write",
+  ],
 });
