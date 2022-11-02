@@ -2,15 +2,10 @@ import { Workflow } from "./src/workflow.ts";
 import { Manifest } from "deno-slack-sdk/mod.ts";
 import { Datastore } from "./src/datastore.ts";
 
-/**
- * The app manifest contains the app's configuration. This
- * file defines attributes like app name and description.
- * https://api.slack.com/future/manifest
- */
 export default Manifest({
-  name: "thankyou-slackbot",
-  description: "count and tally thanks",
-  icon: "assets/thnx.png",
+  name: "thnx",
+  description: "Thnx Bot",
+  icon: "assets/icon.png",
   workflows: [Workflow],
   outgoingDomains: [],
   datastores: [Datastore],

@@ -2,9 +2,9 @@ import { DefineFunction, Schema, SlackFunction } from "deno-slack-sdk/mod.ts";
 import { SlackAPI } from "deno-slack-api/mod.ts";
 import { Datastore, DATASTORE_NAME } from "../datastore.ts";
 
-export const thnxFunction = DefineFunction({
+export const ThnxFunction = DefineFunction({
   callback_id: "thnx-function",
-  title: "thnx",
+  title: "Thnx",
   source_file: "src/functions/thnx.ts",
   input_parameters: {
     properties: {
@@ -27,7 +27,7 @@ export const thnxFunction = DefineFunction({
   },
 });
 
-export default SlackFunction(thnxFunction, async ({ inputs, token }) => {
+export default SlackFunction(ThnxFunction, async ({ inputs, token }) => {
   if (!inputs.target) {
     return { outputs: {} };
   }
@@ -47,7 +47,7 @@ export default SlackFunction(thnxFunction, async ({ inputs, token }) => {
 
   if (result.items.length > 0) {
     const item = result.items[0];
-    thnx = getthnx(item.thnx, inputs.plus);
+    thnx = getThnx(item.thnx, inputs.plus);
     await client.apps.datastore.put({
       datastore: DATASTORE_NAME,
       item: {
@@ -57,7 +57,7 @@ export default SlackFunction(thnxFunction, async ({ inputs, token }) => {
     });
   } else {
     const uuid = crypto.randomUUID();
-    thnx = getthnx(thnx, inputs.plus);
+    thnx = getThnx(thnx, inputs.plus);
     await client.apps.datastore.put({
       datastore: DATASTORE_NAME,
       item: {
@@ -75,6 +75,6 @@ export default SlackFunction(thnxFunction, async ({ inputs, token }) => {
   };
 });
 
-const getthnx = (thnx: number, plus: boolean) => {
+const getThnx = (thnx: number, plus: boolean) => {
   return plus ? thnx + 1 : thnx - 1;
 };

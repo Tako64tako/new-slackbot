@@ -5,7 +5,7 @@ import { SendFunction } from "./functions/send.ts";
 
 export const Workflow = DefineWorkflow({
   callback_id: "thnx",
-  title: "Thnx Workflow",
+  title: "thnx Workflow",
   input_parameters: {
     properties: {
       text: {

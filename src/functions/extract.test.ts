@@ -6,7 +6,7 @@ const { createContext } = SlackFunctionTester("extract");
 
 Deno.test("Extract function test", async () => {
   let inputs = {
-    body: "<@U0LAN0Z89> foo++",
+    body: "<@U0LAN0Z89> fooありがとう",
   };
   let res = await ExtractFunction(createContext({ inputs }));
   assertEquals(res.outputs?.target, "foo");
