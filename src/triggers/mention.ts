@@ -9,7 +9,7 @@ const trigger: Trigger<typeof Workflow.definition> = {
     channel_ids: [`${env.CHANNEL_ID}`], // TODO: Should use environment variables etc.
   },
   name: "Mention trigger",
-  workflow: "#/workflows/karma",
+  workflow: "#/workflows/thnx",
   "inputs": {
     "text": {
       value: "{{data.text}}",
