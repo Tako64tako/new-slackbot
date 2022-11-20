@@ -28,11 +28,12 @@ export const ExtractFunction = DefineFunction({
 });
 
 export default SlackFunction(ExtractFunction, ({ inputs }) => {
-  const regExp = /\<\@.+?\>\s?(.+)(.*ありがとう|ありがとうございます.*)$/;
+  const regExp = /\<\@.+?\>\s?(\<\@.+?\>)(.*ありがとう|ありがとうございます.*)/;
   const match = inputs.body.match(regExp);
   if (match) {
     const target = match[1];
     const thnx = match[2];
+    // const text = match[3];
     const plus = thnx === "ありがとう" || "ありがとうございます" ? true : false;
     return {
       outputs: {
